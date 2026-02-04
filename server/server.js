@@ -49,11 +49,17 @@ const PORT = process.env.PORT || 5000;
 
 
 await connectDB()
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 5000;
-    server.listen(PORT,  () => {
-    
-        console.log(`Server running on port ${PORT}`);
-    });
-}
+const startServer = async () => {
+    try {
+        await connectDB();
+        if (process.env.NODE_ENV !== 'production') {
+            server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+        }
+    } catch (error) {
+        console.error("DB Connection failed", error);
+    }
+};
+
+startServer();
+
 export default server;
