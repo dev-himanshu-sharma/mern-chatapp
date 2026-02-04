@@ -1,0 +1,67 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+*{
+  font-family: "Outfit",sans-serif;
+}
+
+::-webkit-scrollbar{
+  display: none;
+} */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+* {
+  font-family: "Outfit", sans-serif;
+  box-sizing: border-box; /* Ensures padding doesn't break layout width */
+}
+
+/* Hide scrollbars but allow scrolling */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom Scrollbar for Chat */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #5b21b6; /* Aapke theme ka purple color */
+  border-radius: 10px;
+}
+/* --- ADD THESE FIXES BELOW --- */
+
+/* Prevent the app from growing larger than the screen height */
+#root, body, html {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Fix for the chat image "explosion" issue */
+.chat-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensures the chat window doesn't get pushed out by long messages */
+.break-words {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Keeps the profile images in the chat consistent */
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
