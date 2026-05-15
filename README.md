@@ -118,7 +118,9 @@ npm run dev
 
 # 📸 Screenshots
 
-![Chat UI](./src/assets/chatui.png)
+![Chat UI](./client/src/assets/chatui.png)
+
+
 ---
 
 # 👨‍💻 Author
@@ -126,7 +128,7 @@ npm run dev
 Himanshu Sharma
 
 * GitHub: https://github.com/dev-himanshu-sharma
-* LinkedIn: https://linkedin.com
+* LinkedIn: [https://linkedin.com](https://www.linkedin.com/in/dev-himanshusharma/)
 
 ---
 
