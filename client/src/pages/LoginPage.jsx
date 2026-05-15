@@ -68,11 +68,11 @@ const LoginPage = () => {
                             <p className='text-sm text-gray-400'>{image ? "Image Selected" : "Upload Profile Picture"}</p>
                         </div>
 
-                        <textarea onChange={(e) => setBio(e.target.value)} value={bio} rows={4} className='p-2 bg-transparent border border-gray-500 rounded-md focus:outline-none focus:ring-indigo-500' placeholder='Bio'></textarea>
+                        <textarea onChange={(e) => setBio(e.target.value)} value={bio} rows={4} required className='p-2 bg-transparent border border-gray-500 rounded-md focus:outline-none focus:ring-indigo-500' placeholder='Bio'></textarea>
                     </div>
                 )}
 
-                <button type='Submit' className='py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer font-semibold'>
+                <button type='submit' className='py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer font-semibold'>
                     {currState === 'Sign up' ? (isDataSubmitted ? 'Create Account' : 'Next') : 'Login Now'}
                 </button>
 

@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 import User from "../models/User.js";
 
 // Middleware to protect routes
 export const protectRoute = async (req, res, next) => {
     try {
-        // 1. Header se token nikalna (Aapne 'token' key use ki hai)
         const token = req.headers.token;
 
         if (!token) {
@@ -14,17 +14,23 @@ export const protectRoute = async (req, res, next) => {
             });
         }
 
-        // 2. Token verify karna
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        if (!decoded) {
-            return res.status(401).json({
+        if (!process.env.JWT_SECRET) {
+            console.error("protectRoute: JWT_SECRET is not set");
+            return res.status(500).json({
                 success: false,
-                message: "Unauthorized - Invalid Token"
+                message: "Server misconfiguration"
             });
         }
 
-        // 3. User ko DB se nikalna (Password exclude karke)
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (mongoose.connection.readyState !== 1) {
+            return res.status(503).json({
+                success: false,
+                message: "Database unavailable"
+            });
+        }
+
         const user = await User.findById(decoded.userId).select("-password");
 
         if (!user) {
@@ -34,14 +40,21 @@ export const protectRoute = async (req, res, next) => {
             });
         }
 
-        // 4. User data ko request object mein save karna
         req.user = user;
-
-        // 5. Next function call karna taaki controller tak pahunch sakein
         next();
-
     } catch (error) {
         console.log("Error in protectRoute middleware: ", error.message);
+
+        if (
+            error.name === "JsonWebTokenError" ||
+            error.name === "TokenExpiredError"
+        ) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized - Invalid or expired token"
+            });
+        }
+
         res.status(500).json({
             success: false,
             message: "Internal Server Error"

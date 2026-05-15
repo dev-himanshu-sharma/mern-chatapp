@@ -46,6 +46,8 @@ export const AuthProvider = ({ children }) => {
         axios.defaults.headers.common["token"] = data.token;
         connectSocket(data.userData);
         toast.success(data.message);
+      } else {
+        toast.error(data.message || "Something went wrong");
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
@@ -61,6 +63,8 @@ const updateProfile = async (profileData) => {
     if (data.success) {
       setAuthUser(data.user);
       toast.success("Profile updated");
+    } else {
+      toast.error(data.message || "Profile update failed");
     }
   } catch (error) {
     toast.error(
