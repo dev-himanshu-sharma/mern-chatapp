@@ -4,8 +4,7 @@ QuickChat is a modern real-time chat application built using the MERN stack with
 
 ## 🌐 Live Demo
 
-🔗 Live Website: https://mern-chatapp-umber.vercel.app
-
+🔗 [Live Website](https://mern-chatapp-umber.vercel.app)
 ---
 
 # ✨ Features
@@ -128,7 +127,7 @@ npm run dev
 Himanshu Sharma
 
 * GitHub: https://github.com/dev-himanshu-sharma
-* LinkedIn: [https://linkedin.com](https://www.linkedin.com/in/dev-himanshusharma/)
+* LinkedIn: https://www.linkedin.com/in/dev-himanshusharma
 
 ---
 
